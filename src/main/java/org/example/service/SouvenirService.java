@@ -57,4 +57,17 @@ public interface SouvenirService {
      * @param id ID of the souvenir to update
      */
     void update(Souvenir souvenir, Long id);
+
+    /**
+     * Gets all distinct souvenir years.
+     *
+     * @return  the list of all distinct souvenir years in the database
+     */
+    List<Integer> getAllProductionYears();
+    /**
+     * Gets all souvenirs by the year of production.
+     *
+     * @return  the list of all souvenirs in the database by the year of production
+     */
+    List<Souvenir> findByProductionYear(int year);
 }

@@ -2,9 +2,9 @@ package org.example.service;
 
 import java.util.List;
 
+import org.example.database.Database;
 import org.example.entity.Manufacturer;
 import org.example.entity.Souvenir;
-import org.example.database.Database;
 
 public class SouvenirServiceImpl implements SouvenirService {
     private final Database<Souvenir, Long> souvenirDatabase;
@@ -65,5 +65,21 @@ public class SouvenirServiceImpl implements SouvenirService {
     @Override
     public void update(Souvenir souvenir, Long id) {
         souvenirDatabase.update(souvenir, id);
+    }
+
+    @Override public List<Integer> getAllProductionYears() {
+        List<Souvenir> souvenirs = souvenirDatabase.getAll();
+        return souvenirs.stream()
+            .map(souvenir -> souvenir.getDateOfProduction().getYear())
+            .distinct()
+            .toList();
+    }
+
+    @Override
+    public List<Souvenir> findByProductionYear(int year) {
+        return souvenirDatabase.findAll(
+            souvenir -> souvenir.getDateOfProduction().getYear() == year,
+            null,
+            false);
     }
 }

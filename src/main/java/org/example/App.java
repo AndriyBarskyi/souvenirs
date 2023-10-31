@@ -11,7 +11,6 @@ public class App {
 
     // Still in progress...
     // TODO: Add unit-tests
-    // TODO: Add JavaDoc
     // TODO: Add validation
     // TODO: Add exception handling
     // TODO: refactor code

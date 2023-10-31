@@ -56,7 +56,7 @@ public class ManufacturerServiceImpl implements ManufacturerService {
             false);
     }
 
-    @Override public List<Manufacturer> getAllBySouvenirNameAndProductionYear(
+    @Override public List<Manufacturer> findAllBySouvenirNameAndProductionYear(
         String souvenirName, int yearOfProduction) {
         return manufacturerDatabase.findAll(
             manufacturer -> {

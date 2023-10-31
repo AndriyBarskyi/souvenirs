@@ -48,7 +48,7 @@ public interface ManufacturerService {
      * @return the list of all manufacturers which produce souvenirs with the specified name and production year
      */
 
-    List<Manufacturer> getAllBySouvenirNameAndProductionYear(
+    List<Manufacturer> findAllBySouvenirNameAndProductionYear(
         String souvenirName, int yearOfProduction);
     /**
      * Updates a manufacturer with the specified ID.

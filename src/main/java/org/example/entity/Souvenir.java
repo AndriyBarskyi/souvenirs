@@ -14,8 +14,8 @@ public class Souvenir {
     private BigDecimal price;
     private LocalDate dateOfProduction;
 
-    public Souvenir(String name, Long manufacturerId, BigDecimal price,
-        LocalDate dateOfProduction) {
+    public Souvenir(String name,  BigDecimal price,
+        LocalDate dateOfProduction, Long manufacturerId) {
         this.name = name;
         this.manufacturerId = manufacturerId;
         this.price = price;
