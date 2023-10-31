@@ -16,22 +16,22 @@ public class SouvenirServiceImpl implements SouvenirService {
         this.manufacturerDatabase = manufacturerDatabase;
     }
 
+    @Override
     public void save(Souvenir souvenir) {
         souvenirDatabase.save(souvenir);
     }
 
+    @Override
     public Souvenir get(Long id) {
         return souvenirDatabase.get(id);
     }
 
+    @Override
     public void delete(Long id) {
         souvenirDatabase.delete(id);
     }
 
-    public void printAll() {
-        souvenirDatabase.getAll().forEach(System.out::println);
-    }
-
+    @Override
     public List<Souvenir> findByManufacturerId(Long manufacturerId) {
         return souvenirDatabase.findAll(
             souvenir -> souvenir.getManufacturerId().equals(manufacturerId),
@@ -39,6 +39,7 @@ public class SouvenirServiceImpl implements SouvenirService {
             false);
     }
 
+    @Override
     public List<Souvenir> findByManufacturerName(String manufacturerName) {
         return souvenirDatabase.findAll(
             souvenir -> manufacturerDatabase.get(souvenir.getManufacturerId())
@@ -47,11 +48,16 @@ public class SouvenirServiceImpl implements SouvenirService {
             false);
     }
 
+    @Override
     public List<Souvenir> findByCountry(String country) {
         return souvenirDatabase.findAll(
             souvenir -> manufacturerDatabase.get(souvenir.getManufacturerId())
                 .getCountry().equals(country),
             null,
             false);
+    }
+
+    @Override public List<Souvenir> getAll() {
+        return souvenirDatabase.getAll();
     }
 }

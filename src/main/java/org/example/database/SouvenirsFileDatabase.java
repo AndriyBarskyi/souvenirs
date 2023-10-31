@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.example.io.GsonFileHandler;
+import org.example.io.GsonSouvenirFileHandler;
 import org.example.io.JSONFileHandler;
 import org.example.entity.Souvenir;
 
@@ -14,7 +14,7 @@ public class SouvenirsFileDatabase implements Database<Souvenir, Long> {
         "src/main/java/org/example/souvenirs.json";
     private static SouvenirsFileDatabase instance;
     private final JSONFileHandler<Souvenir> fileHandler =
-        new GsonFileHandler();
+        new GsonSouvenirFileHandler();
 
     private SouvenirsFileDatabase() {
 
@@ -36,6 +36,8 @@ public class SouvenirsFileDatabase implements Database<Souvenir, Long> {
                     ? souvenir : souvenir1)
                 .collect(Collectors.toList());
         } else {
+            souvenir.setId(souvenirs.stream().mapToLong(Souvenir::getId).max()
+                .orElse(0) + 1);
             souvenirs.add(souvenir);
         }
         fileHandler.writeToJSONFile(FILE_PATH, souvenirs);
@@ -70,5 +72,10 @@ public class SouvenirsFileDatabase implements Database<Souvenir, Long> {
             souvenirs.sort(comparator);
         }
         return souvenirs;
+    }
+
+    // TODO: implement this method better
+    @Override public void update(Souvenir manufacturer, int id) {
+        this.save(manufacturer);
     }
 }

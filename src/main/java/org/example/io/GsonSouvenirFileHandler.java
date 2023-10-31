@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-public class GsonFileHandler implements JSONFileHandler<Souvenir> {
+public class GsonSouvenirFileHandler implements JSONFileHandler<Souvenir> {
     private final Gson gson = new GsonBuilder()
         .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
         .disableHtmlEscaping()

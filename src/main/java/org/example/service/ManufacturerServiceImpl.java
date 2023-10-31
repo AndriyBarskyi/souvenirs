@@ -73,4 +73,8 @@ public class ManufacturerServiceImpl implements ManufacturerService {
             null,
             false);
     }
+
+    @Override public void update(Manufacturer manufacturer, int id) {
+        manufacturerDatabase.update(manufacturer, id);
+    }
 }

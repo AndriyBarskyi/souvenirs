@@ -3,6 +3,7 @@ package org.example.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
@@ -12,6 +13,14 @@ public class Souvenir {
     private Long manufacturerId;
     private BigDecimal price;
     private LocalDate dateOfProduction;
+
+    public Souvenir(String name, Long manufacturerId, BigDecimal price,
+        LocalDate dateOfProduction) {
+        this.name = name;
+        this.manufacturerId = manufacturerId;
+        this.price = price;
+        this.dateOfProduction = dateOfProduction;
+    }
 
     @Override
     public String toString() {

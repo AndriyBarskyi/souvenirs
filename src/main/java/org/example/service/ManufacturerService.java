@@ -14,4 +14,6 @@ public interface ManufacturerService {
     List<Manufacturer> getAllCheaperThan(BigDecimal price);
 
     List<Manufacturer> getAllBySouvenirIdAndProductionDate(Long souvenirId, LocalDate dateOfProduction);
+
+    void update(Manufacturer manufacturer, int id);
 }
