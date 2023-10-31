@@ -57,7 +57,13 @@ public class SouvenirServiceImpl implements SouvenirService {
             false);
     }
 
-    @Override public List<Souvenir> getAll() {
+    @Override
+    public List<Souvenir> getAll() {
         return souvenirDatabase.getAll();
+    }
+
+    @Override
+    public void update(Souvenir souvenir, Long id) {
+        souvenirDatabase.update(souvenir, id);
     }
 }

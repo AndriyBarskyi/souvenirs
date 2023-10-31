@@ -11,6 +11,7 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea/
 
 ### Eclipse ###
 .apt_generated
@@ -36,3 +37,14 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/.idea/sonarlint/issuestore/2/6/268b09d2a5cdab7d148f0ec91f7b3fb51601410d
+/.idea/sonarlint/securityhotspotstore/2/6/268b09d2a5cdab7d148f0ec91f7b3fb51601410d
+/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec
+/.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec
+/.idea/encodings.xml
+/.idea/sonarlint/issuestore/index.pb
+/.idea/sonarlint/securityhotspotstore/index.pb
+/.idea/jpa-buddy.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
+/.idea/workspace.xml

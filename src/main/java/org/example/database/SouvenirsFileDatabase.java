@@ -11,7 +11,7 @@ import org.example.entity.Souvenir;
 
 public class SouvenirsFileDatabase implements Database<Souvenir, Long> {
     private static final String FILE_PATH =
-        "src/main/java/org/example/souvenirs.json";
+        "src/main/java/org/example/resources/souvenirs.json";
     private static SouvenirsFileDatabase instance;
     private final JSONFileHandler<Souvenir> fileHandler =
         new GsonSouvenirFileHandler();
@@ -27,7 +27,8 @@ public class SouvenirsFileDatabase implements Database<Souvenir, Long> {
         return instance;
     }
 
-    @Override public void save(Souvenir souvenir) {
+    @Override
+    public void save(Souvenir souvenir) {
         List<Souvenir> souvenirs = fileHandler.readFromJSONFile(FILE_PATH);
         if (souvenirs.stream().anyMatch(souvenir1 -> souvenir1.getId()
             .equals(souvenir.getId()))) {
@@ -43,24 +44,28 @@ public class SouvenirsFileDatabase implements Database<Souvenir, Long> {
         fileHandler.writeToJSONFile(FILE_PATH, souvenirs);
     }
 
-    @Override public Souvenir get(Long id) {
+    @Override
+    public Souvenir get(Long id) {
         return fileHandler.readFromJSONFile(FILE_PATH).stream()
             .filter(souvenir -> souvenir.getId().equals(id)).findFirst()
             .orElse(null);
     }
 
-    @Override public void delete(Long id) {
+    @Override
+    public void delete(Long id) {
         fileHandler.writeToJSONFile(FILE_PATH,
             fileHandler.readFromJSONFile(FILE_PATH).stream()
                 .filter(souvenir -> !souvenir.getId().equals(id))
                 .toList());
     }
 
-    @Override public List<Souvenir> getAll() {
+    @Override
+    public List<Souvenir> getAll() {
         return fileHandler.readFromJSONFile(FILE_PATH);
     }
 
-    @Override public List<Souvenir> findAll(Predicate<Souvenir> predicate,
+    @Override
+    public List<Souvenir> findAll(Predicate<Souvenir> predicate,
         Comparator<Souvenir> comparator,
         boolean reverse) {
         List<Souvenir> souvenirs =
@@ -75,7 +80,8 @@ public class SouvenirsFileDatabase implements Database<Souvenir, Long> {
     }
 
     // TODO: implement this method better
-    @Override public void update(Souvenir manufacturer, int id) {
+    @Override
+    public void update(Souvenir manufacturer, Long id) {
         this.save(manufacturer);
     }
 }

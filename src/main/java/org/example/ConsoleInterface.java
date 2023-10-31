@@ -119,7 +119,7 @@ public class ConsoleInterface {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введіть ID виробника:");
-        int id = scanner.nextInt();
+        Long id = (long) scanner.nextInt();
         scanner.nextLine();
 
         System.out.println("Введіть нову назву виробника:");

@@ -56,8 +56,8 @@ public class ManufacturerServiceImpl implements ManufacturerService {
             false);
     }
 
-    @Override public List<Manufacturer> getAllBySouvenirIdAndProductionDate(
-        Long souvenirId, LocalDate dateOfProduction) {
+    @Override public List<Manufacturer> getAllBySouvenirNameAndProductionYear(
+        String souvenirName, int yearOfProduction) {
         return manufacturerDatabase.findAll(
             manufacturer -> {
                 List<Souvenir> souvenirs = souvenirDatabase.findAll(
@@ -66,15 +66,14 @@ public class ManufacturerServiceImpl implements ManufacturerService {
                     null,
                     false);
                 return souvenirs.stream()
-                    .anyMatch(souvenir -> souvenir.getId().equals(souvenirId)
-                        && souvenir.getDateOfProduction()
-                        .equals(dateOfProduction));
+                    .anyMatch(souvenir -> souvenir.getName().equals(souvenirName)
+                        && souvenir.getDateOfProduction().getYear() == yearOfProduction);
             },
             null,
             false);
     }
 
-    @Override public void update(Manufacturer manufacturer, int id) {
+    @Override public void update(Manufacturer manufacturer, Long id) {
         manufacturerDatabase.update(manufacturer, id);
     }
 }

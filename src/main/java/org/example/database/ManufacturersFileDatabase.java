@@ -11,7 +11,7 @@ import org.example.io.JSONFileHandler;
 
 public class ManufacturersFileDatabase implements Database<Manufacturer, Long> {
     private static final String FILE_PATH =
-        "src/main/java/org/example/manufacturers.json";
+        "src/main/java/org/example/resources/manufacturers.json";
     private static ManufacturersFileDatabase instance;
     private final JSONFileHandler<Manufacturer> fileHandler =
         new GsonManufacturerFileHandler();
@@ -79,7 +79,9 @@ public class ManufacturersFileDatabase implements Database<Manufacturer, Long> {
         return manufacturers;
     }
 
-    @Override public void update(Manufacturer manufacturer, int id) {
-
+    // TODO: implement this method better
+    @Override
+    public void update(Manufacturer manufacturer, Long id) {
+        this.save(manufacturer);
     }
 }
