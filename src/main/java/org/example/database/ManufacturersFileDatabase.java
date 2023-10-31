@@ -65,18 +65,9 @@ public class ManufacturersFileDatabase implements Database<Manufacturer, Long> {
     }
 
     @Override
-    public List<Manufacturer> findAll(Predicate<Manufacturer> predicate,
-        Comparator<Manufacturer> comparator,
-        boolean reverse) {
-        List<Manufacturer> manufacturers =
-            new java.util.ArrayList<>(fileHandler.readFromJSONFile(FILE_PATH)
+    public List<Manufacturer> findAll(Predicate<Manufacturer> predicate) {
+        return new java.util.ArrayList<>(fileHandler.readFromJSONFile(FILE_PATH)
                 .stream().filter(predicate).toList());
-        if (reverse) {
-            manufacturers.sort(comparator.reversed());
-        } else {
-            manufacturers.sort(comparator);
-        }
-        return manufacturers;
     }
 
     // TODO: implement this method better

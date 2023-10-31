@@ -1,12 +1,11 @@
 package org.example.service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
+import org.example.database.Database;
 import org.example.entity.Manufacturer;
 import org.example.entity.Souvenir;
-import org.example.database.Database;
 
 public class ManufacturerServiceImpl implements ManufacturerService {
     private final Database<Manufacturer, Long> manufacturerDatabase;
@@ -29,9 +28,7 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override public void delete(Long id) {
         souvenirDatabase.findAll(
-                souvenir -> souvenir.getManufacturerId().equals(id),
-                null,
-                false)
+                souvenir -> souvenir.getManufacturerId().equals(id))
             .forEach(souvenir -> souvenirDatabase.delete(souvenir.getId()));
         manufacturerDatabase.delete(id);
     }
@@ -45,15 +42,11 @@ public class ManufacturerServiceImpl implements ManufacturerService {
             manufacturer -> {
                 List<Souvenir> souvenirs = souvenirDatabase.findAll(
                     souvenir -> souvenir.getManufacturerId()
-                        .equals(manufacturer.getId()),
-                    null,
-                    false);
+                        .equals(manufacturer.getId()));
                 return souvenirs.stream().map(Souvenir::getPrice)
                     .reduce(BigDecimal.ZERO, BigDecimal::add).compareTo(price)
                     < 0;
-            },
-            null,
-            false);
+            });
     }
 
     @Override public List<Manufacturer> findAllBySouvenirNameAndProductionYear(
@@ -62,15 +55,13 @@ public class ManufacturerServiceImpl implements ManufacturerService {
             manufacturer -> {
                 List<Souvenir> souvenirs = souvenirDatabase.findAll(
                     souvenir -> souvenir.getManufacturerId()
-                        .equals(manufacturer.getId()),
-                    null,
-                    false);
+                        .equals(manufacturer.getId()));
                 return souvenirs.stream()
-                    .anyMatch(souvenir -> souvenir.getName().equals(souvenirName)
-                        && souvenir.getDateOfProduction().getYear() == yearOfProduction);
-            },
-            null,
-            false);
+                    .anyMatch(
+                        souvenir -> souvenir.getName().equals(souvenirName)
+                            && souvenir.getDateOfProduction().getYear()
+                            == yearOfProduction);
+            });
     }
 
     @Override public void update(Manufacturer manufacturer, Long id) {

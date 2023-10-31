@@ -34,27 +34,21 @@ public class SouvenirServiceImpl implements SouvenirService {
     @Override
     public List<Souvenir> findByManufacturerId(Long manufacturerId) {
         return souvenirDatabase.findAll(
-            souvenir -> souvenir.getManufacturerId().equals(manufacturerId),
-            null,
-            false);
+            souvenir -> souvenir.getManufacturerId().equals(manufacturerId));
     }
 
     @Override
     public List<Souvenir> findByManufacturerName(String manufacturerName) {
         return souvenirDatabase.findAll(
             souvenir -> manufacturerDatabase.get(souvenir.getManufacturerId())
-                .getName().equals(manufacturerName),
-            null,
-            false);
+                .getName().equals(manufacturerName));
     }
 
     @Override
     public List<Souvenir> findByCountry(String country) {
         return souvenirDatabase.findAll(
             souvenir -> manufacturerDatabase.get(souvenir.getManufacturerId())
-                .getCountry().equals(country),
-            null,
-            false);
+                .getCountry().equals(country));
     }
 
     @Override
@@ -78,8 +72,6 @@ public class SouvenirServiceImpl implements SouvenirService {
     @Override
     public List<Souvenir> findByProductionYear(int year) {
         return souvenirDatabase.findAll(
-            souvenir -> souvenir.getDateOfProduction().getYear() == year,
-            null,
-            false);
+            souvenir -> souvenir.getDateOfProduction().getYear() == year);
     }
 }

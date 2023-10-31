@@ -11,7 +11,7 @@ public interface Database <T, R> {
     void delete(R id);
 
     List<T> getAll();
-    List<T> findAll(Predicate<T> predicate, Comparator<T> comparator, boolean reverse);
+    List<T> findAll(Predicate<T> predicate);
 
     void update(T manufacturer, R id);
 }

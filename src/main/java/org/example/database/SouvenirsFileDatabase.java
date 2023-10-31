@@ -1,13 +1,12 @@
 package org.example.database;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.example.entity.Souvenir;
 import org.example.io.GsonSouvenirFileHandler;
 import org.example.io.JSONFileHandler;
-import org.example.entity.Souvenir;
 
 public class SouvenirsFileDatabase implements Database<Souvenir, Long> {
     private static final String FILE_PATH =
@@ -65,18 +64,9 @@ public class SouvenirsFileDatabase implements Database<Souvenir, Long> {
     }
 
     @Override
-    public List<Souvenir> findAll(Predicate<Souvenir> predicate,
-        Comparator<Souvenir> comparator,
-        boolean reverse) {
-        List<Souvenir> souvenirs =
-            new java.util.ArrayList<>(fileHandler.readFromJSONFile(FILE_PATH)
-                .stream().filter(predicate).toList());
-        if (reverse) {
-            souvenirs.sort(comparator.reversed());
-        } else {
-            souvenirs.sort(comparator);
-        }
-        return souvenirs;
+    public List<Souvenir> findAll(Predicate<Souvenir> predicate) {
+        return new java.util.ArrayList<>(fileHandler.readFromJSONFile(FILE_PATH)
+            .stream().filter(predicate).toList());
     }
 
     // TODO: implement this method better
