@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Глиняна ваза",
+    "price": 250.00,
+    "dateOfProduction": "2023-05-15",
+    "manufacturerId": 1
+  },
+  {
+    "id": 2,
+    "name": "Вишита сорочка",
+    "price": 350.00,
+    "dateOfProduction": "2023-08-20",
+    "manufacturerId": 3
+  },
+  {
+    "id": 3,
+    "name": "Дерев'яна ложка",
+    "price": 30.00,
+    "dateOfProduction": "2023-04-10",
+    "manufacturerId": 4
+  },
+  {
+    "id": 4,
+    "name": "Mug",
+    "price": 10.0,
+    "dateOfProduction": "2023-10-31",
+    "manufacturerId": 2
+  }
+]
