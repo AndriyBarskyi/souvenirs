@@ -11,8 +11,6 @@ public class App {
 
     // Still in progress...
     // TODO: Add unit-tests
-    // TODO: Add validation
-    // TODO: Add exception handling
     // TODO: refactor code
     public static void main(String[] args) {
         ManufacturerService manufacturerService = new ManufacturerServiceImpl(

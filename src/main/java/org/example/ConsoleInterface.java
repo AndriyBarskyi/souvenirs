@@ -1,6 +1,7 @@
 package org.example;
 
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -44,58 +45,75 @@ public class ConsoleInterface {
                 "14. Показати список сувенірів за роками випуску");
             System.out.println("0. Вихід");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = -1;
 
-            switch (choice) {
-            case 1:
-                addManufacturer();
-                break;
-            case 2:
-                editManufacturer();
-                break;
-            case 3:
-                viewAllManufacturers();
-                break;
-            case 4:
-                deleteManufacturerAndSouvenirs();
-                break;
-            case 5:
-                addSouvenir();
-                break;
-            case 6:
-                editSouvenir();
-                break;
-            case 7:
-                viewAllSouvenirs();
-                break;
-            case 8:
-                deleteSouvenir();
-                break;
-            case 9:
-                searchSouvenirsByManufacturerName();
-                break;
-            case 10:
-                searchSouvenirsByCountry();
-                break;
-            case 11:
-                searchManufacturersByPrice();
-                break;
-            case 12:
-                viewAllManufacturersAndSouvenirs();
-                break;
-            case 13:
-                searchManufacturersBySouvenirNameAndYear();
-                break;
-            case 14:
-                viewSouvenirsByYears();
-                break;
-            case 0:
-                System.out.println("До побачення!");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Неправильний вибір. Спробуйте ще раз.");
+            while (choice < 0 || choice > 14) {
+                System.out.print("Введіть ваш вибір: ");
+                try {
+                    choice = scanner.nextInt();
+                    if (choice < 0 || choice > 14) {
+                        System.out.println("Неправильний вибір. Введіть число від 0 до 14.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Неправильний ввід. Введіть число від 0 до 14.");
+                    scanner.nextLine();
+                }
+            }
+
+            try {
+                switch (choice) {
+                case 1:
+                    addManufacturer();
+                    break;
+                case 2:
+                    editManufacturer();
+                    break;
+                case 3:
+                    viewAllManufacturers();
+                    break;
+                case 4:
+                    deleteManufacturerAndSouvenirs();
+                    break;
+                case 5:
+                    addSouvenir();
+                    break;
+                case 6:
+                    editSouvenir();
+                    break;
+                case 7:
+                    viewAllSouvenirs();
+                    break;
+                case 8:
+                    deleteSouvenir();
+                    break;
+                case 9:
+                    searchSouvenirsByManufacturerName();
+                    break;
+                case 10:
+                    searchSouvenirsByCountry();
+                    break;
+                case 11:
+                    searchManufacturersByPrice();
+                    break;
+                case 12:
+                    viewAllManufacturersAndSouvenirs();
+                    break;
+                case 13:
+                    searchManufacturersBySouvenirNameAndYear();
+                    break;
+                case 14:
+                    viewSouvenirsByYears();
+                    break;
+                case 0:
+                    System.out.println("До побачення!");
+                    System.exit(0);
+                    break;
+                default:
+                    System.err.println("Неправильний вибір. Спробуйте ще раз.");
+                }
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+                System.out.println("Спробуйте ще раз.");
             }
         }
     }
@@ -179,7 +197,7 @@ public class ConsoleInterface {
         System.out.println("Введіть дату випуску сувеніру:");
         LocalDate date = LocalDate.parse(scanner.nextLine());
 
-        System.out.println("Введіть ID виробника:");
+        System.out.println("Введіть Id виробника:");
         int manufacturerId = scanner.nextInt();
 
         souvenirService.save(
@@ -190,7 +208,7 @@ public class ConsoleInterface {
     private void deleteManufacturerAndSouvenirs() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введіть ID виробника:");
+        System.out.println("Введіть Id виробника:");
         int id = scanner.nextInt();
 
         manufacturerService.delete((long) id);
@@ -237,7 +255,7 @@ public class ConsoleInterface {
     private void editManufacturer() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введіть ID виробника:");
+        System.out.println("Введіть Id виробника:");
         Long id = (long) scanner.nextInt();
         scanner.nextLine();
 
